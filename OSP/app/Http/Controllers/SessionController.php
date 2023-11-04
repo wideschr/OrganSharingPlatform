@@ -28,6 +28,8 @@ class SessionController extends Controller
             'password' => 'required|min:8|max:255',
         ]);
 
+        
+
         //attempt to login the user with the credentials they provided. If succcess, user is autom. logged in. If not, error message is shown and user is redirected back to login page
         if(auth()->attempt($attributes)) {
             session()->flash('success','You are now logged in.');

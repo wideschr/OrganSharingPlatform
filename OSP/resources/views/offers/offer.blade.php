@@ -11,6 +11,8 @@
                 {{-- offer details --}}
                 <section class="flex flex-col overflow-auto lg:w-4/5 mx-auto grid border border-green-200">
 
+                    
+
                     {{-- page title --}}
                     <x-page-title>
                         Offers
@@ -50,9 +52,14 @@
                             </div>
                             
 
-                            {{-- discussion --}}
+                            {{-- discussion -> only if logged in--}}
                             <h2 class="mb-2 mx-auto text-center text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">Discussion</h2>
-                            <x-offer-comments-post :offer="$offer" />
+                            @if (auth()->check())
+                                <x-offer-comments-post :comments="$comments" :offer="$offer"/>
+                            @else
+                                <p class="text-center">Log in to participate in the discussion</p>
+                            @endif
+                            
 
                         </div>
 

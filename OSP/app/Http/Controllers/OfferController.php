@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Offer;
 use App\Models\User;
 use App\Models\Species;
@@ -14,8 +15,10 @@ class OfferController extends Controller
     //this function is called to show an indivdual offer.
     public function show(Offer $offer)
     {
+        //get the offer with the user, species, euthanasia method relationship
         return view('offers/offer', [
             'offer' => $offer,
+            'comments' => $offer->comment()->latest()->with('user')->get(),
         ]);
     }
 

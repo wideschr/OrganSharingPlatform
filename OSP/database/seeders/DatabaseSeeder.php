@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use DB;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,14 +12,7 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-    {
-        //truncate all tables
-        \App\Models\Offer::truncate();
-        \App\Models\Species::truncate();
-        \App\Models\User::truncate();
-        \App\Models\Euthanasia_method::truncate();
-
-
+    {   
         // create tables
         //users
         \App\Models\User::factory(5)->create();
@@ -26,10 +20,20 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'admin',
             'username' => 'admin',
-            'email' => 'wito.ds@gmail.com',
-            'password'=> bcrypt('admin'),
+            'email' => 'admin@ehb.be',
+            'password'=> "Password!321",
             'is_admin' => true
         ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'admin',
+            'username' => 'admin2',
+            'email' => 'wito.ds@gmail.com',
+            'password'=> 'azertyuiop',
+            'is_admin' => true
+        ]);
+
+
 
 
         //create species
@@ -49,8 +53,11 @@ class DatabaseSeeder extends Seeder
         };
         
 
-
         //create offers
-        \App\Models\Offer::factory(15)->create();
+        \App\Models\Offer::factory(30)->create();
+
+        //create comments
+        \App\Models\Comment::factory(100)->create();
+
     }
 }

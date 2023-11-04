@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('offer_id');
-            $table->foreignId('user_id');
-            
+            $table->foreignId('offer_id')->constrained()->onDelete('cascade');//if offer is deleted, delete all comments of this offer
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+
+            $table->longText('body');
+            $table->timestamp('published_at')->nullable();
+
             $table->timestamps();
         });
     }

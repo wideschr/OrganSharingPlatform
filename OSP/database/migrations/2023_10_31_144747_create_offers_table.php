@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();//if user is deleted, delete all offers of this user
             $table->foreignId('species_id');
             $table->foreignId('euthanasia_method_id');
 

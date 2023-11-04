@@ -27,6 +27,14 @@ class Offer extends Model
         return $this->belongsTo(Euthanasia_method::class, 'euthanasia_method_id');
     }
 
+    //define relationship to comments
+    public function comment()
+    {
+        return $this->hasMany(Comment::class, 'offer_id');
+    }
+
+
+
     public function scopeFilter($query, array $filters)
     {
         // if there is a search term in the url, search for it in the database --> ?? is the null safe operator adnd checks if there is a value for the key 'search' in the array $filters. If there is no value, it will return false

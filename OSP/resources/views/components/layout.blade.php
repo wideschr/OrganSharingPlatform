@@ -46,6 +46,9 @@
     <x-alert-success />
     <x-alert-error />
 
+    {{-- subscribe to newsletter --}}
+    <x-subscribe-footer />
+
     {{-- footer --}}
     <x-page-footer>
 

@@ -15,10 +15,10 @@
 
                     {{-- page title --}}
                     <x-page-title>
-                        Offers
+                        Offer Details
                         <x-slot name="introText">
-                            lorem ipsum dolor est. lorem ipsum dolor est. lor lorem ipsum dolor est. lorem ipsum dolor
-                            est. lorem ipsum dolor est. lorem ipsum dolor est. lorem ipsum dolor est.
+                            On this page you can find all the details about the offer. If you are interested in this offer, you can make a request.
+                            Finally, you can also participate in the discussion about this offer.
                         </x-slot>
                     </x-page-title>
 

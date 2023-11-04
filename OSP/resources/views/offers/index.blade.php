@@ -5,18 +5,27 @@
 
         {{-- main screen --}}
         <div class="flex justify-center">
-            <div class="flex flex-col w-full bg-white p-6 rounded-lg">
+            <div class="flex flex-col  w-full bg-white p-6 rounded-lg">
 
                 {{-- page title --}}
                 <x-page-title>
-                    Offers
+                    Overview
                     <x-slot name="introText">
-                        lorem ipsum dolor est. lorem ipsum dolor est. lor lorem ipsum dolor est. lorem ipsum dolor est.
-                        lorem ipsum dolor est. lorem ipsum dolor est. lorem ipsum dolor est.
+                        On this page you get an overview of all the offers available on the platform. This also contains the offers that are expired.
+                        You can use the filters or search bar to find the offers you are looking for.
                     </x-slot>
+
                 </x-page-title>
-
-
+                    
+                @if(auth()->check())
+                    {{-- create offer button --}}
+                    <div class="w-full flex justify-center -mt-8 mb-6">
+                        <x-button-alternative>
+                            <x-slot name='href'>"offer/create"</x-slot>
+                            +  Create an offer
+                        </x-button-alternative>
+                    </div>
+                @endif
 
                 {{-- filters and cards --}}
                 <div class="grid grid-cols-12 overflow-auto">
@@ -33,6 +42,9 @@
                     <div class="col-span-1 "></div>
 
                     {{-- cards --> send a prop with the posts --}}
+
+
+
                     @if ($offers->count() > 0)
                         <div class="col-span-7">
                             <x-post-card :offers="$offers" :selections="$selections">

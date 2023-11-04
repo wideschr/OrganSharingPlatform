@@ -45,16 +45,16 @@ foreach ($allOffers as $key => $value) {
     @foreach ($filters as $filter => $options)
         @if  ($filter == 'expiration_date')
             <div x-data="{ show: false }"
-                class="flex flex-col rounded-xl hover:border-t hover:border-blue-700 w-full py-2 mb-5  bg-gray-100"
+                class="flex flex-col rounded-xl hover:border-t hover:border-blue-700 w-full py-2 mb-5 border border-gray-300  bg-gray-50"
                 >
 
                 {{-- label --}}
                 <span class="flex justify-between">
-                    <button class="flex font-bold text-left text-blue-700  px-3 py-1 flex-grow w-full items-center"
+                    <button class="flex font-bold text-left text-gray-700 hover:text-blue-700 hover:border-blue-700 px-3 py-1 flex-grow w-full items-center"
                         @click="show = !show"> Expiration
                         <span class="ml-auto mr-5 flex items-center">
                             <!-- Expand icon, show/hide based on section open state. -->
-                            <svg x-show="!show" class="h-5 w-5 text-blue-700" viewBox="0 0 20 20" fill="currentColor"
+                            <svg x-show="!show" class="h-5 w-5 text-blue-700 hover:" viewBox="0 0 20 20" fill="currentColor"
                                 aria-hidden="true">
                                 <path
                                     d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
@@ -73,15 +73,11 @@ foreach ($allOffers as $key => $value) {
                 {{-- options --}}
                 <div x-show="show" style="display:none; display:flex; flex-direction:column ">
                     <a @click="show = !show"
-                        class="inline-block w-full p-2 py-1 mx-3 my-1 hover:text-blue-700 hover:font-bold hover:cursor-pointer"
-                        href="/">All</a>
-
+                        class="inline-block w-full p-2 py-1 mx-3 my-1 hover:text-blue-700 hover:font-bold hover:cursor-pointer {{request('expiration') == "available" ? 'text-blue-700' : '' }}"
+                        href="/?expiration=available&{{http_build_query(request()->except('expiration', 'page'))}}">Available</a>
                     <a @click="show = !show"
-                        class="inline-block w-full p-2 py-1 mx-3 my-1 hover:text-blue-700 hover:font-bold hover:cursor-pointer"
-                        href="/expiration/available">Available</a>
-                    <a @click="show = !show"
-                        class="inline-block w-full p-2 py-1 mx-3 my-1 hover:text-blue-700 hover:font-bold hover:cursor-pointer"
-                        href="/expiration/expired">Expired</a>
+                        class="inline-block w-full p-2 py-1 mx-3 my-1 hover:text-blue-700 hover:font-bold hover:cursor-pointer {{request('expiration') == "expired" ? 'text-blue-700' : '' }}"
+                        href="/?expiration=expired&{{http_build_query(request()->except('expiration', 'page'))}}">Expired</a>
                 </div>
             </div>
 
@@ -99,12 +95,12 @@ foreach ($allOffers as $key => $value) {
             -->
 
             <div x-data="{ show: false }"
-                class="flex flex-col rounded-xl hover:border-t hover:border-blue-700 w-full py-2 mb-5  bg-gray-100"
+                class="flex flex-col rounded-xl hover:border-t hover:border-blue-700 w-full py-2 mb-5 border border-gray-300  bg-gray-50"
                 >
 
                 {{-- label --}}
                 <span class="flex justify-between">
-                    <button class="flex font-bold text-left text-blue-700  px-3 py-1 flex-grow w-full items-center"
+                    <button class="flex font-bold text-left text-gray-700 hover:text-blue-700  px-3 py-1 flex-grow w-full items-center"
                         @click="show = !show"> {{ ucwords(str_replace('_', ' ', $filter)) }}
                         <span class="ml-auto mr-5 flex items-center">
                             <!-- Expand icon, show/hide based on section open state. -->
@@ -126,10 +122,7 @@ foreach ($allOffers as $key => $value) {
 
                 {{-- options --}}
                 <div x-show="show" class=" overflow-x-hidden whitespace-wrap overflow-auto max-h-52" style="display:none; display:flex; flex-direction:column ">
-                    {{-- <a @click="show = !show"
-                        class="inline-block w-full p-2 py-1 mx-3 my-1 hover:text-blue-700 hover:font-bold hover:cursor-pointer"
-                        href="/">All</a> --}}
-                  
+                
                     @foreach ($options as $option)
                     <a @click="show = !show"
                             class="inline-block w-full p-2 py-1 mx-3 my-1 hover:text-blue-700 hover:font-bold hover:cursor-pointer {{request($filter) == $option ? 'text-blue-700' : '' }}"

@@ -9,22 +9,19 @@
 
                 {{-- page title --}}
                 <x-page-title>
-                    About
+                    Create an offer
                     <x-slot name="introText">
-                        On this page you can learn all about the Organ collection platform and how to use it.
-                        It also contains references to the technologies/sources/inspiration used to build the platform.
+                        Great that you have an offer to share with the community. <br>
+                        Fill in the fields below and if someone is interested, they will contact you.
                     </x-slot>
                 </x-page-title>
 
 
-
-                
-                <div class="grid grid-cols-12 overflow-auto">
-
-                    gimme content
-
+                {{-- form --}}
+                <div class="col-span-12">
+                    <x-create-offer-form>
+                    </x-create-offer-form>
                 </div>
-
 
             </div>
 

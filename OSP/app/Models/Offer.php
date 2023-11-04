@@ -124,9 +124,9 @@ class Offer extends Model
         });
 
         //expiration date
-        $query->when($filters['expiration_date'] ?? false, function ($query, $expiration_date) {
+        $query->when($filters['expiration'] ?? false, function ($query, $expiration) {
 
-            if ($expiration_date == "Available") {
+            if ($expiration == "available") {
                 $query
                     ->where('expiration_date', '>=', now());
             } else {

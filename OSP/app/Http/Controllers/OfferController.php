@@ -35,7 +35,7 @@ class OfferController extends Controller
             'sex' => request('sex'), 
             'vital_status' => request('vital_status'), 
             'organisation' => request('organisation'), 
-            'expiration_date' => request('expiration_date'), 
+            'expiration' => request('expiration'), 
             'euthanasia_method' => request('euthanasia_method'),
         );        
 

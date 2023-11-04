@@ -10,16 +10,17 @@
     <h1 class="ml-10 text-xl flex-grow">Organ Sharing Platform</h1>
 
     {{-- links --}}
-    <div class="flex mt-8 md:mt-0">
+    <div class="flex items-center">
         {{-- make links blue when active route --}}
-        <a href="/" class="border-b-2 border-transparent text-xs font-bold uppercase mx-7 py-2 {{ request()->is('/') ? 'text-blue-700' : '' }}">Home Page</a>
+        <a href="/" class="border-b-2 border-transparent text-medium font-bold uppercase mx-5 py-1 {{ request()->is('/') ? 'text-blue-700' : '' }}">Home Page</a>
+        <a href="/about" class=" border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('register') ? 'text-blue-700' : '' }}">About</a>
         
         {{-- if authenticated --}}
         @if (auth()->check())
-            <a href="/offers-requests" class="border-b-2 border-transparent text-xs font-bold uppercase mx-7 py-2 {{ request()->is('offers-requests') ? 'text-blue-700' : '' }}">My Offers & Requests</a>
+            <a href="/offers-requests" class="border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('offers-requests') ? 'text-blue-700' : '' }}">My Offers & Requests</a>
             
             <div class="relative " id="user-menu">
-                <a href="#" class=" border-b-2 border-transparent text-xs font-bold uppercase mx-7 py-2 {{ request()->is('account') ? 'text-blue-700' : '' }}">
+                <a href="#" class=" border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('account') ? 'text-blue-700' : '' }}">
                     {{auth()->user()->name}}
                     <i class="fas fa-chevron-down"></i> <!-- Dropdown arrow -->
                 </a>
@@ -35,8 +36,9 @@
 
         {{-- if guest (not authenticated) --}}
         @if (!auth()->check())
-            <a href="/register" class=" border-b-2 border-transparent text-xs font-bold uppercase mx-7 py-2 {{ request()->is('register') ? 'text-blue-700' : '' }}">Register</a>
-            <a href="/login" class="border-b-2 border-transparent bg-blue-700 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+            
+            <a href="/register" class=" border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('register') ? 'text-blue-700' : '' }}">Register</a>
+            <a href="/login" class="border-b-2 hover:bg-blue-800 border-transparent bg-blue-700 ml-3 rounded-full text-xs font-semibold text-white uppercase focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900  py-3 px-5">
                 log in
             </a>
         @endguest

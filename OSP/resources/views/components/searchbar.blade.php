@@ -18,9 +18,9 @@
     <form method="GET" action="#" class="col-span-10 mb-10 ">
         <input      type="text" 
                     name="search" 
-                    placeholder="Search species, organs, ..."
+                    placeholder="Search species, strains, organisation name, ..."
                     value = "{{request('search')}}"
-                    class="block w-full p-4 pl-10 text-sm text-blue-700 border border-gray-300 rounded-lg bg-gray-100 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    class="block text-center w-full p-4 pl-10 text-medium text-blue-700 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
     </form>
     <div class="col-span-1 "></div>
 </div>

@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MailchimpController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Models\Offer;
@@ -27,16 +29,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [OfferController::class, 'filter']);
 
 //see offer details --> route checks if type is In this route definition, {type?} is an optional route parameter. If a type is provided in the URL, it will be passed to the route's callback function. If not, the callback function will still be invoked, but the $type parameter will be null.
-Route::get('/offer/{offer:slug}', [OfferController::class, 'show']);
+Route::get('/offer/{offer:id}', [OfferController::class, 'show']);
 
 //create offer
-Route::post('/offer/create', [OfferController::class,'create'])->middleware('auth');
-Route::post('/offer/create', [OfferController::class,'store'])->middleware('auth'); //todo
+Route::get('/create-offer', [OfferController::class,'create'])->middleware('auth');
+Route::post('/create-offer', [OfferController::class,'store'])->middleware('auth'); //todo
 
 //comments
-Route::post('/offer/{offer:slug}/comments-post', [CommentController::class,'store'])->middleware('auth');
-Route::post('/offer/{offer:slug}/comments-update/{comments:id}', [CommentController::class,'update'])->middleware('auth'); //todo or to delete
-Route::delete('/offer/{offer:slug}/comments-delete/{comments:id}', [CommentController::class,'destroy'])->middleware('auth');
+Route::post('/offer/{offer:id}/comments-post', [CommentController::class,'store'])->middleware('auth');
+Route::post('/offer/{offer:id}/comments-update/{comments:id}', [CommentController::class,'update'])->middleware('auth'); //todo or to delete
+Route::delete('/offer/{offer:id}/comments-delete/{comments:id}', [CommentController::class,'destroy'])->middleware('auth');
 
 //registration --> makes only sense if you are not logged in. that is why it is using the guest middleware (defined by laravel). 
 //The rerouting to home is defined in app/http/kernel -> routeToMiddleWare(), the home constant in App/http/providers/RouteServiceProvider.php
@@ -44,7 +46,7 @@ Route::get('/register', [RegisterController::class,'create'])->middleware('guest
 Route::post('/register', [RegisterController::class,'store'])->middleware('guest');
 
 //login / out
-Route::get('/login', [SessionController::class,'create'])->middleware('guest');
+Route::get('/login', [SessionController::class,'create'])->middleware('guest')->name('login'); //need to add the name because in the auth middleware it is looking for a route named login to redirect to if the user gets logged out
 Route::post('/login', [SessionController::class,'store'])->middleware('guest');
 Route::get('/logout', [SessionController::class,'destroy'])->middleware('auth');
 
@@ -57,8 +59,15 @@ Route::get('/about', function (){
     ]);
 });
 
+//profile page
+Route::get('/profile', [ProfileController::class, 'create'])->middleware('auth');
+Route::post('/profile/edit', [ProfileController::class, 'update'])->middleware('auth');
 
 //subscribe to newsletter
 Route::post('/subscribe', [MailchimpController::class,'subscribe'])->middleware('guest');
+
+//contact form
+Route::get('/contact/create-form', [ContactController::class,'create'])->middleware('guest');
+//Route::post('/contact', [ContactController::class,'store'])->middleware('guest');
 
 

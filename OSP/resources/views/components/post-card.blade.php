@@ -78,10 +78,12 @@
                 </div>
 
                 {{-- CTA --}}
+                <div class="flex flex-grow justify-end items-center">
                 <x-button-default>
-                    <x-slot name='href'>"offer/{{$offerInfo['slug']}}"</x-slot>
+                    <x-slot name='href'>"offer/{{$offerInfo['id']}}"</x-slot>
                     View offer
                 </x-button-default>
+            </div>
 
             </div>    
         </div>

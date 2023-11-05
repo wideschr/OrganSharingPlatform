@@ -22,7 +22,7 @@
     <x-page-header />
 
 
-    <section class="border flex-grow">
+    <section class=" flex-grow">
 
         <?php
 
@@ -36,6 +36,10 @@
 
         if (isset($login)) {
             echo $login;
+        }
+
+        if (isset($createOffer)) {
+            echo $createOffer;
         }
         
         ?>

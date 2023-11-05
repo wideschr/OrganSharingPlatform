@@ -13,14 +13,13 @@
 </form> --}}
 
 
-<div class="grid grid-cols-12 col-span-12">
-    <div class="col-span-1 "></div>
-    <form method="GET" action="#" class="col-span-10 mb-10 ">
+
+
+    <form method="GET" action="#" >
         <input      type="text" 
                     name="search" 
-                    placeholder="Search species, strains, organisation name, ..."
+                    placeholder="Search..."
                     value = "{{request('search')}}"
-                    class="block text-center w-full p-4 pl-10 text-medium text-blue-700 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    class="block  w-full py-2 pl-3 text-medium text-blue-700 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
     </form>
-    <div class="col-span-1 "></div>
-</div>
+

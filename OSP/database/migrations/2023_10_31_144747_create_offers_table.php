@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('species_id');
             $table->foreignId('euthanasia_method_id');
 
-            $table->string('slug')->unique();
             $table->string('type');
             $table->string('strain');
             $table->string('genetics');

@@ -6,21 +6,19 @@
 
         {{-- main screen --}}
         <div class="flex justify-center">
-            <div class="flex flex-col w-full bg-white p-6 rounded-lg">
+            <div class="flex flex-col w-full bg-white rounded-lg">
+
+                {{-- page title --}}
+                <x-page-title>
+                    Offer Details
+                    <x-slot name="introText">
+                        On this page you can find all the details about the offer. <br>
+                        If you are interested in this offer, you can make a request. You can also participate in the discussion about this offer.
+                    </x-slot>
+                </x-page-title>
 
                 {{-- offer details --}}
-                <section class="flex flex-col overflow-auto lg:w-4/5 mx-auto grid border border-green-200">
-
-                    
-
-                    {{-- page title --}}
-                    <x-page-title>
-                        Offer Details
-                        <x-slot name="introText">
-                            On this page you can find all the details about the offer. If you are interested in this offer, you can make a request.
-                            Finally, you can also participate in the discussion about this offer.
-                        </x-slot>
-                    </x-page-title>
+                <section class="flex flex-col overflow-auto lg:w-4/5 mx-auto grid ">
 
                     {{-- description and details block --}}
                     <div class="grid grid-cols-12">
@@ -28,13 +26,13 @@
                         <div class="col-span-6">
                             {{-- description --}}
                             <div class="flex flex-col items-start justify-start ">
-                                <h2 class="mb-2 mx-auto text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">Description</h2>
-                                <p class=" text-center leading-relaxed">{{$offer->description}}</p>
+                                <h2 class="mb-4 text-left text-lg font-normal text-gray-500 lg:text-xl  dark:text-gray-400">Description</h2>
+                                <p class="mb-4 text-left leading-relaxed">{{$offer->description}}</p>
     
     
                                 {{-- buttons --}}
-                                <div class="flex mb-40 mx-auto">
-                                    <div class="flex items-center"> {{-- This div is here because the default button is aligned at justify-end, which is not what we want. --}}
+                                <div class="flex mb-40 ">
+                                    <div class="flex "> {{-- This div is here because the default button is aligned at justify-end, which is not what we want. --}}
                                         {{-- CTA --}}
                                         <x-button-default>
                                             <x-slot name='href'>"offer/{{ $offer->slug }}"</x-slot>
@@ -53,11 +51,11 @@
                             
 
                             {{-- discussion -> only if logged in--}}
-                            <h2 class="mb-2 mx-auto text-center text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">Discussion</h2>
+                            <h2 class="mb-4  text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">Discussion</h2>
                             @if (auth()->check())
                                 <x-offer-comments-post :comments="$comments" :offer="$offer"/>
                             @else
-                                <p class="text-center">Log in to participate in the discussion</p>
+                                <p class="">Log in to participate in the discussion</p>
                             @endif
                             
 

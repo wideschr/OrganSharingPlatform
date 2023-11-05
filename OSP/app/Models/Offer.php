@@ -9,6 +9,8 @@ class Offer extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     //define relationship to user
     public function user()
     {

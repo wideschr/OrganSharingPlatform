@@ -14,19 +14,20 @@
         {{-- make links blue when active route --}}
         <a href="/" class="border-b-2 border-transparent text-medium font-bold uppercase mx-5 py-1 {{ request()->is('/') ? 'text-blue-700' : '' }}">Home Page</a>
         <a href="/about" class=" border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('register') ? 'text-blue-700' : '' }}">About</a>
-        
+        <a href="/contact" class=" border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('register') ? 'text-blue-700' : '' }}">Contact</a>
+
         {{-- if authenticated --}}
         @if (auth()->check())
             <a href="/offers-requests" class="border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('offers-requests') ? 'text-blue-700' : '' }}">My Offers & Requests</a>
             
             <div class="relative " id="user-menu">
                 <a href="#" class=" border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('account') ? 'text-blue-700' : '' }}">
-                    {{auth()->user()->name}}
+                    {{auth()->user()->username}}
                     <i class="fas fa-chevron-down"></i> <!-- Dropdown arrow -->
                 </a>
                 <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg  bg-white ring-1 ring-black ring-opacity-5 hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button">
                     <a href="#" class="border-b-2 border-transparent block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Admin</a>
-                    <a href="#" class="border-b-2 border-transparent block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Profile</a>
+                    <a href="/profile" class="border-b-2 border-transparent block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Profile</a>
                     <a href="/logout" class="border-b-2 border-transparent block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Logout</a>
                 </div>
             </div>

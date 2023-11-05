@@ -21,7 +21,7 @@
 ?>  
 
 {{-- caption --}}
-<h2 class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400 whitespace-nowrap">Offer Details</h2>
+<h2 class="mb-8 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400 whitespace-nowrap">Details</h2>
 
 {{-- table --}}
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">

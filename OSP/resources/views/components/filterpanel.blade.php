@@ -42,6 +42,13 @@ foreach ($allOffers as $key => $value) {
 <div class="flex flex-col text-left items-start justify-start "> 
 
     <h2 class=" text-left mb-5 text-lg font-normal text-gray-500 lg:text-xl  dark:text-gray-400">FILTERS</h2>
+
+    {{-- search bar on one line --}}
+        <div class="flex flex-col w-full mb-5">
+            <x-searchbar />
+        </div>
+
+    {{-- filters --}}
     @foreach ($filters as $filter => $options)
         @if  ($filter == 'expiration_date')
             <div x-data="{ show: false }"

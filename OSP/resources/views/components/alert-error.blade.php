@@ -1,7 +1,7 @@
 @if (session()->has('error'))
     <div class="mt-5 rounded-lg fixed inset-x-0 top-0 z-50 flex justify-center">
         <div id="alert"
-            class="text-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            class="text-center py-4 px-10 mb-4 text-sm text-red-800 rounded-lg bg-red-100 dark:bg-gray-800 dark:text-red-400"
             role="alert">
             <span class="font-medium"></span> {{ session('error') }}
         </div>

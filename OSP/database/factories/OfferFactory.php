@@ -29,8 +29,6 @@ class OfferFactory extends Factory
             'euthanasia_method_id'=> function () {
                 return rand(1, Euthanasia_method::count());
             },
-
-           'slug' => fake()->slug(), 
             'type' => fake()->randomElement(['offer', 'request']),
             
             'strain' => fake()->word(),

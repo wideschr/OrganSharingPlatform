@@ -3,12 +3,12 @@
 {{-- scipt for toggle menu is at bottom --}}
 
 <section class="bg-white dark:bg-gray-900 antialiased">
-    <div class="max-w-2xl mx-auto px-4">
+    <div class=" ">
 
         {{-- comments --}}
 
         @foreach ($comments as $comment)
-            <article class="p-6 text-base bg-gray-50 rounded-lg dark:bg-gray-900 border-b border-gray-100 mb-4">
+            <article class="p-6 text-base bg-gray-50 rounded-xl dark:bg-gray-900 border-b border-gray-100 mb-4">
                 <footer class="flex justify-between items-center mb-2">
                     <div class="flex items-center">
                         {{-- user --}}
@@ -16,7 +16,7 @@
                             {{-- profile pic --}}
                             <img
                                 class="mr-2 w-6 h-6 rounded-full"
-                                src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                                src="{{$comment->user->profile_photo_url}}"
                                 alt="Michael Gough">{{ $comment->user->username }}</p>
                         {{-- published at --}}
                         <p class="text-sm text-gray-600 dark:text-gray-400"><time > {{ \Carbon\Carbon::parse($comment->published_at)->diffForHumans() }}</time></p>
@@ -41,14 +41,14 @@
                                 role="menu" aria-orientation="vertical" aria-labelledby="comment-menu-button">
                                 <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                     aria-labelledby="dropdownMenuIconHorizontalButton">
-                                    <li>
+                                    {{-- <li>
                                         
                                         <a href="#"
                                             class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                             role="menuitem">Edit</a>
-                                    </li>
+                                    </li> --}}
                                     <li>
-                                        <form action="/offer/{{$offer->slug}}/comments-delete/{{$comment->id}}" method="post">
+                                        <form action="/offer/{{$offer->id}}/comments-delete/{{$comment->id}}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-left w-full block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" 
@@ -74,11 +74,11 @@
 
 
         {{-- submit comments --}}
-        <form action="/offer/{{$offer->slug}}/comments-post" method="POST" class="mb-6 flex flex-col items-right">
+        <form action="/offer/{{$offer->id}}/comments-post" method="POST" class="mb-6 flex flex-col items-right">
             @csrf
 
             <textarea id="body" rows="6"
-                class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-blue-700 dark:bg-gray-800 dark:border-gray-700"
+                class=" w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-300 focus:border-blue-700 dark:bg-gray-800 dark:border-gray-700"
                 placeholder="Write a comment and please remember to be nice..." 
                 required
                 name="body"></textarea>
@@ -88,10 +88,13 @@
                 <p class="text-red-500 text-xs italic mb-4">{{ $message }}</p>
             @enderror
 
-            <button type="submit"
-                class="inline-flex mx-auto items-center py-2.5 px-4 font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+            <div>
+               <button type="submit"
+                class="inline-flex  items-center py-2.5 px-4 font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                 Post comment
-            </button>
+                </button> 
+            </div>
+            
         </form>
     </div>
 </section>

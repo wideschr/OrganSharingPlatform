@@ -18,8 +18,8 @@
 
 
                 {{-- form --}}
-                <div class="col-span-12">
-                    <x-create-offer-form>
+                <div class="grid grid-col-12  mx-auto" style="width:75%;">
+                    <x-create-offer-form :allOffers="$allOffers">
                     </x-create-offer-form>
                 </div>
 

@@ -26,7 +26,7 @@ class CommentFactory extends Factory
                 return rand(1, Offer::count());
             },
             'body' => fake()->paragraph(),
-            'published_at' => fake()->dateTimeBetween('-1 years', 'now'),            
+            'published_at' => fake()->dateTimeThisDecade(),            
         ];
     }
 }

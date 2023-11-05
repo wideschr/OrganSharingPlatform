@@ -59,5 +59,9 @@ class DatabaseSeeder extends Seeder
         //create comments
         \App\Models\Comment::factory(100)->create();
 
+
+        //create contact form messages
+        \App\Models\ContactFormMessage::factory(25)->create();
+
     }
 }

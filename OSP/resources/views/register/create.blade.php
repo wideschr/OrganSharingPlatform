@@ -11,13 +11,6 @@
                     Organ Sharing Platform (OSP)
                 </a>
 
-                {{-- when submitted, it is posted to /register --}}
-
-
-
-
-                {{-- if there are errors, display them --}}
-
                 <div
                     class="  bg-white rounded-lg shadow dark:border md:mt-0 w-3/5 xl:p-0 dark:bg-gray-800 dark:border-gray-700 mx-auto">
                     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">

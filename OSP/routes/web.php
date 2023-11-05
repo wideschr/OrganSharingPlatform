@@ -6,6 +6,7 @@ use App\Http\Controllers\MailchimpController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RequestController;
 use App\Http\Controllers\SessionController;
 use App\Models\Offer;
 use App\Models\User;
@@ -28,8 +29,12 @@ use Illuminate\Support\Facades\Route;
 //See offers (filtered / searched or not)
 Route::get('/', [OfferController::class, 'filter']);
 
-//see offer details --> route checks if type is In this route definition, {type?} is an optional route parameter. If a type is provided in the URL, it will be passed to the route's callback function. If not, the callback function will still be invoked, but the $type parameter will be null.
+//see offer details 
 Route::get('/offer/{offer:id}', [OfferController::class, 'show']);
+
+//make request
+Route::get('/offer/{offer:id}/request', [RequestController::class,'create'])->middleware('auth');
+Route::post('/offer/{offer:id}/request', [RequestController::class,'store'])->middleware('auth');
 
 //create offer
 Route::get('/create-offer', [OfferController::class,'create'])->middleware('auth');
@@ -64,10 +69,12 @@ Route::get('/profile', [ProfileController::class, 'create'])->middleware('auth')
 Route::post('/profile/edit', [ProfileController::class, 'update'])->middleware('auth');
 
 //subscribe to newsletter
-Route::post('/subscribe', [MailchimpController::class,'subscribe'])->middleware('guest');
+Route::post('/subscribe', [MailchimpController::class,'subscribe']);
 
 //contact form
-Route::get('/contact/create-form', [ContactController::class,'create'])->middleware('guest');
-//Route::post('/contact', [ContactController::class,'store'])->middleware('guest');
+Route::get('/contact', [ContactController::class,'create']);
+Route::post('/contact', [ContactController::class,'store']);
+
+
 
 

@@ -74,7 +74,7 @@ class ProfileController extends Controller
                     Rule::unique('users')->ignore(auth()->user()->id),//creates a unique rule that ignores the current user's ID. This means the email field must be unique among all users except for the current user.
                 ],
                 'biography' => 'max:2000',
-                'profile_picture'=> 'file|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'profile_picture_url'=> 'file|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
             //get the user and update the attributes
@@ -84,9 +84,10 @@ class ProfileController extends Controller
                 'username' => $attributes['username'],
                 'email' => $attributes['email'],
                 'biography' => $attributes['biography'],
-                'profile_picture'=> request('profile_picture') ? request('profile_picture')->store('profile_pictures', 'public') : $user->profile_picture,
+                'profile_picture_url'=> request('profile_picture') ? request('profile_picture')->store('profile_pictures', 'public') : $user->profile_picture,
             ]);
 
+          
             
             return back()->with('success','Your profile data was successfully updated.');
 

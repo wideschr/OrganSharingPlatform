@@ -51,7 +51,7 @@
             {{-- cross-site request forgery --> generates a hidden input with a unique value that laravel will check. This makes sure that only the submitted form can go to the register page --}}
             @csrf
 
-            <div class="flex pr-10">
+            <div class="flex 0">
                 {{-- left part --}}
                 <div class="flex flex-col flex-grow">
 

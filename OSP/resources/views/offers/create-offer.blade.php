@@ -3,19 +3,26 @@
     {{-- content --}}
     <x-slot name="content">
 
+        {{-- page title --}}
+        <div class="flex flex-col justify-center items-align  pt-10 pb-5 text-center bg-gray-50">
+            <x-page-title>
+                Create an offer
+                <x-slot name="introText">
+                    Great that you have an offer to share with the community. <br>
+                    Fill in the fields below and if someone is interested, they will contact you.
+                </x-slot>
+            </x-page-title>
+            <div class="w-full flex justify-center bg-gray-50 pb-10">
+                <x-button-default>
+                    Create your own offer
+                    <x-slot name='href'>"create-offer"</x-slot>
+                </x-button-default>
+            </div>
+        </div>
+
         {{-- main screen --}}
-        <div class="flex justify-center">
+        <div class="flex justify-center mt-10">
             <div class="flex flex-col w-full bg-white p-6 rounded-lg">
-
-                {{-- page title --}}
-                <x-page-title>
-                    Create an offer
-                    <x-slot name="introText">
-                        Great that you have an offer to share with the community. <br>
-                        Fill in the fields below and if someone is interested, they will contact you.
-                    </x-slot>
-                </x-page-title>
-
 
                 {{-- form --}}
                 <div class="grid grid-col-12  mx-auto" style="width:75%;">

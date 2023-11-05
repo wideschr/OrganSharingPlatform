@@ -16,7 +16,7 @@
                             {{-- profile pic --}}
                             <img
                                 class="mr-2 w-6 h-6 rounded-full"
-                                src="{{$comment->user->profile_photo_url}}"
+                                src="{{ asset('storage/'.$comment->user->profile_picture_url) }}"
                                 alt="Michael Gough">{{ $comment->user->username }}</p>
                         {{-- published at --}}
                         <p class="text-sm text-gray-600 dark:text-gray-400"><time > {{ \Carbon\Carbon::parse($comment->published_at)->diffForHumans() }}</time></p>

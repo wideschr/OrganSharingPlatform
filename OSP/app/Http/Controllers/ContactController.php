@@ -32,7 +32,7 @@ class ContactController extends Controller
         try {
             //Send email to myself --> check env file, mail.php and services.php + Mailable object i created --> ContactFormMail
             Mail::to(env("MAIL_FROM_ADDRESS"))
-                    ->cc($request->user())  
+                    ->cc($request->email)  
                     ->send(new ContactFormMail($contactFormMessage));   
 
         } catch (\Exception $e) {

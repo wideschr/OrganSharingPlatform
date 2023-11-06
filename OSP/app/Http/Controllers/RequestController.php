@@ -35,22 +35,21 @@ class RequestController extends Controller
             "message" => $request->message,
         ]);
 
+        
+
        //send email to the offerer
         try {
             //Send email to myself --> check env file, mail.php and services.php + Mailable object i created --> ContactFormMail
             Mail::to(env("MAIL_FROM_ADDRESS"))
-                    ->cc($request->user())  
+                    ->cc($request->email)  
                     ->send(new RequestMail($requestFormData, $offer));   
 
         } catch (\Exception $e) {
-            return back()->with("error", $e->getMessage());
+            return back()->with("error", $e->getMessage() );//"Your message could not be sent. Please try again."
         }
         
-
-
         return back()->with("success","Your message has been sent successfully!");
-        
-
+    
     }
 
 

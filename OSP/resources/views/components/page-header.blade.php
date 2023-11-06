@@ -18,7 +18,7 @@
 
         {{-- if authenticated --}}
         @if (auth()->check())
-            <a href="/offers-requests" class="border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('offers-requests') ? 'text-blue-700' : '' }}">My Offers & Requests</a>
+            <a href="/my-offers-requests/{{auth()->user()->id}}" class="border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('offers-requests') ? 'text-blue-700' : '' }}">My Offers & Requests</a>
             
             <div class="relative " id="user-menu">
                 <a href="#" class=" border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('account') ? 'text-blue-700' : '' }}">

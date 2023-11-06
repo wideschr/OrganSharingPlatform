@@ -31,6 +31,7 @@ class RequestMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
+            from: $this->requestFormData["email"],
             subject: 'Organ Sharing Platform | message about your offer',
         );
     }

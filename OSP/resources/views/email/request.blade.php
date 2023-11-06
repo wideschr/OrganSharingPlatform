@@ -27,45 +27,39 @@
                 If you want to see the offer, you can click on the button below.
             </x-slot>
         </x-page-title>
+        <div class="w-full flex justify-center bg-gray-50 pb-10">
+            <x-button-default>
+                Go to the offer
+                <x-slot name='href'>{{url('/offer/' . $offer->id)}}</x-slot>
+            </x-button-default>
+        </div>
         
     </div>
 
 
 
 
-    <section class="flex flex-col overflow-auto lg:w-4/5 mx-auto grid ">
+    <section class="flex flex-col overflow-auto lg:w-4/5 mx-auto grid mt-10">
 
         {{-- description and details block --}}
         <div class="grid grid-cols-12">
 
+            
             <div class="col-span-6">
+                {{-- message --}}
+                <div class="flex flex-col items-start justify-start ">
+                    <h2 class="mb-4 text-left text-lg font-normal text-gray-500 lg:text-xl  dark:text-gray-400">
+                        Message that was sent</h2>
+                    <p class="mb-4 text-left leading-relaxed ">From: <a href="mailto:{{ $requestFormData['email'] }}" class="underline text-blue-700">{{ $requestFormData['email'] }}</a></p>
+                    <p class="mb-4 text-left leading-relaxed whitespace-normal">{{ $requestFormData['message'] }}</p>
+                </div>
+
                 {{-- description --}}
                 <div class="flex flex-col items-start justify-start ">
                     <h2 class="mb-4 text-left text-lg font-normal text-gray-500 lg:text-xl  dark:text-gray-400">
-                        Description</h2>
+                        Description of your offer</h2>
                     <p class="mb-4 text-left leading-relaxed">{{ $offer->description }}</p>
-
-
-                    {{-- buttons --}}
-                    <div class="flex mb-40 ">
-                        <div class="flex "> {{-- This div is here because the default button is aligned at justify-end, which is not what we want. --}}
-                            {{-- CTA --}}
-                            <x-button-default>
-                                <x-slot name='href'>"/offer/{{ $offer->id }}/request"</x-slot>
-                                Contact the donor
-                            </x-button-default>
-
-                            {{-- bookmark button --}}
-                            {{-- <button class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
-                                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                                        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
-                                    </svg>
-                                </button> --}}
-                        </div>
-                    </div>
                 </div>
-
-
 
             </div>
 

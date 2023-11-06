@@ -3,8 +3,10 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MailchimpController;
+use App\Http\Controllers\MyOfferController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublicProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\SessionController;
@@ -68,6 +70,9 @@ Route::get('/about', function (){
 Route::get('/profile', [ProfileController::class, 'create'])->middleware('auth');
 Route::post('/profile/edit', [ProfileController::class, 'update'])->middleware('auth');
 
+//public profile page
+Route::get('/profile/{user:username}', [PublicProfileController::class, 'create'])->middleware('auth');
+
 //subscribe to newsletter
 Route::post('/subscribe', [MailchimpController::class,'subscribe']);
 
@@ -75,7 +80,8 @@ Route::post('/subscribe', [MailchimpController::class,'subscribe']);
 Route::get('/contact', [ContactController::class,'create']);
 Route::post('/contact', [ContactController::class,'store']);
 
-
+//my offers
+Route::get('my-offers/{user:id}', [MyOfferController::class,'create']);
 
 
 

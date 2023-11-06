@@ -6,11 +6,14 @@
 ?>
  
 <div class="grid  ">
-{{-- active filters panel and clear filters button --}}
-    <x-active-filters :selections="$selections">
-    </x-active-filters>
+    
+    {{-- active filters panel and clear filters button --}}
+    @if($selections ?? false)
+        <x-active-filters :selections="$selections">
+        </x-active-filters>
+    @endif
 
-{{-- cards --}}
+    {{-- cards --}}
     @foreach ($offers as $offer => $offerInfo)
     <article>
         <div class="flex flex-col items-start bg-white border border-gray-200 rounded-lg shadow md:flex-row dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 w-full justify-self-center mb-10 px-7 py-4">
@@ -58,14 +61,24 @@
         
 
                     {{-- right panel of card --}}
-                    <div class="flex flex-col justify-center items-end">
+                    <div class="flex flex-col justify-between items-end mb-3">
                         {{-- user --}}
                         <div class="flex items-center mb-4">
                             
-                            <img class="object-fit w-1/4 rounded-t-lg h-15 md:h-auto md:w-8 md:rounded-none md:rounded-l-lg m-2" src="/images/icon_user_black.png" alt="">
-                            <a href="/?username={{$offerInfo->user->username}}" class="inline-block flex-grow text-base font-semibold text-blue-700 dark:text-gray-400 cursor-pointer underline">
-                                {{$offerInfo->user->username}}
-                            </a>
+                            <img class="object-fit w-1/4 rounded-t-lg h-15 md:h-auto md:w-8 md:rounded-none md:rounded-l-lg m-2 pr-2" src="{{ asset('storage/'.$offerInfo->user->profile_picture_url) }}" alt="">
+                            
+                            @if(auth()->check()) 
+                                <a href="/profile/{{$offerInfo->user->username}}" class="inline-block flex-grow text-base font-semibold text-blue-700 dark:text-gray-400 cursor-pointer underline">
+                                    {{$offerInfo->user->username}}
+                                </a>
+                            @endif
+
+                            @if(!auth()->check()) 
+                                <p class="inline-block flex-grow text-base font-semibold text-blue-700 dark:text-gray-400 cursor-pointer underline">
+                                    {{$offerInfo->user->username}}
+                                </p>
+                            @endif
+
                         </div>
 
                         {{-- icons --}}
@@ -76,11 +89,11 @@
                         
                     </div>
                 </div>
-
+                
                 {{-- CTA --}}
                 <div class="flex flex-grow justify-end items-center">
                 <x-button-default>
-                    <x-slot name='href'>"offer/{{$offerInfo['id']}}"</x-slot>
+                    <x-slot name='href'>"/offer/{{$offerInfo['id']}}"</x-slot>
                     View offer
                 </x-button-default>
             </div>

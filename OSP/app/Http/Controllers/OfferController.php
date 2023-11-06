@@ -49,8 +49,6 @@ class OfferController extends Controller
         //get all offers for setting up the filters --> no need to paginate
         $allOffers = Offer::latest()->with('user', 'species', 'euthanasia_method')->get();
        
-                                  
-    
           
         return view('offers/index', [
             'offers' => $offers,

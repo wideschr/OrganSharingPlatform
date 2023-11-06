@@ -22,10 +22,9 @@
 ?>
 
 {{-- based on the post, put the necessary icons --}}
-<div class="flex flex-col justify-around items-center">
+
     {{-- male/female --}}
     <div class="my-2"><img src={{$url_sex}} class="object-fit w-1/4 rounded-t-lg h-15 md:h-auto md:w-10 md:rounded-none md:rounded-l-lg" alt=""></div>
     
     {{-- alive or dead --}}
     <div class="my-2"><img src={{$url_vital_status}} class="object-fit w-1/4 rounded-t-lg h-15 md:h-auto md:w-10 md:rounded-none md:rounded-l-lg" alt=""></div>
-</div>

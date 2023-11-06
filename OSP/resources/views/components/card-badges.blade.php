@@ -4,12 +4,12 @@
 
     @if (\Carbon\Carbon::parse($offer->expiration_date)->greaterThanOrEqualTo(now()))
         <x-badge-green>
-            Valid for until {{ $offer->expiration_date }} - {{ \Carbon\Carbon::parse($offer->expiration_date)->diffForHumans() }}
+            Valid until {{ $offer->expiration_date }} - {{ \Carbon\Carbon::parse($offer->expiration_date)->diffForHumans() }}
             
         </x-badge-green>
     @else
         <x-badge-red>
-            Expired on {{ $offer->expiration_date }} - {{ \Carbon\Carbon::parse($offer->expiration_date)->diffForHumans() }}
+            Expired {{ \Carbon\Carbon::parse($offer->expiration_date)->diffForHumans() }}
         </x-badge-red>
     @endif
 

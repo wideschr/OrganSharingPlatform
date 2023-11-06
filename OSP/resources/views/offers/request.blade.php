@@ -27,8 +27,12 @@
 
                 <section class="grid grid-cols-5 w-4/5 mx-auto ">
 
+                    
                     <form action="/offer/{{ $offer->id }}/request" method="post"
                         class="col-span-3 space-y-4 md:space-y-6  pr-10">
+
+                        <h2 class="mb-4 text-left text-lg font-normal text-gray-500 lg:text-xl  dark:text-gray-400">Contact Form</h2>
+
                         {{-- cross-site request forgery --> generates a hidden input with a unique value that laravel will check. This makes sure that only the submitted form can go to the register page --}}
                         @csrf
 

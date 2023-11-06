@@ -1,4 +1,4 @@
-<nav class="md:flex md:justify-between md:items-center my-5 mx-20">
+<nav class="md:flex md:justify-between md:items-center my-3 w-4/5 mx-auto">
     {{-- logo --}}
     <div>
         <a href="/">
@@ -18,7 +18,7 @@
 
         {{-- if authenticated --}}
         @if (auth()->check())
-            <a href="/my-offers-requests/{{auth()->user()->id}}" class="border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('offers-requests') ? 'text-blue-700' : '' }}">My Offers & Requests</a>
+            <a href="/my-offers/{{auth()->user()->id}}" class="border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('offers-requests') ? 'text-blue-700' : '' }}">My Offers</a>
             
             <div class="relative " id="user-menu">
                 <a href="#" class=" border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('account') ? 'text-blue-700' : '' }}">

@@ -2,7 +2,7 @@
     {{-- logo --}}
     <div>
         <a href="/">
-            <img class="object-fit w-1/4 rounded-t-lg h-5 md:h-auto md:w-12 md:rounded-none md:rounded-l-lg" src="images/placeholder.png" alt="OSP Logo" width="165" height="16">
+            <img class="object-fit h-10" src="images/logo-no-background.png" alt="OSP Logo" >
         </a>
     </div>
 

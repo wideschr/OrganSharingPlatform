@@ -6,15 +6,15 @@
         {{-- page title --}}
         <div class="flex flex-col justify-center items-align  pt-20 pb-5 text-center bg-gray-50">
             <x-page-title>
-                Create an offer
+                Edit your offer
                 <x-slot name="introText">
-                    Great that you have an offer to share with the community. <br>
-                    Fill in the fields below and if someone is interested, they will contact you.
+                    Want to update some of the details about this offer? <br>
+                    Make the changes here and make sure to hit that save button!
                 </x-slot>
             </x-page-title>
             <div class="w-full flex justify-center bg-gray-50 pb-20">
                 <x-button-default>
-                    Create your own offer
+                    Create another offer
                     <x-slot name='href'>"create-offer"</x-slot>
                 </x-button-default>
             </div>
@@ -23,11 +23,22 @@
         {{-- main screen --}}
         <div class="flex justify-center mt-10">
             <div class="flex flex-col w-full bg-white p-6 rounded-lg">
-
+                {{-- back button --}}
+                <div class="mx-auto mb-5" style="width:75%;">
+                    <x-button-alternative>
+                        
+                        <a href="javascript:history.back()">
+                            <div class="flex align-center justify-center">
+                                < Back
+                            </div>
+                        </a>
+                        
+                    </x-button-alternative>
+                </div>
                 {{-- form --}}
                 <div class="grid grid-col-12  mx-auto" style="width:75%;">
-                    <x-create-offer-form :allOffers="$allOffers">
-                    </x-create-offer-form>
+                    <x-edit-offer-form :originalOffer="$originalOffer" :allOffers="$allOffers">
+                    </x-edit-offer-form>
                 </div>
 
             </div>

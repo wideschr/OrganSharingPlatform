@@ -1,6 +1,8 @@
-@props(['allOffers'])
+@props(['allOffers', 'originalOffer'])
+
 
 <?php
+    use Carbon\Carbon;
     //get the labels for the filters we want and the options for the filter values
     $propertiess = [];
     $properties = ['type', 'species', 'strain', 'sex', 'vital_status', 'organisation', 'expiration_date', 'euthanasia_method'];
@@ -40,13 +42,9 @@
     class=" w-full  col-span-4 bg-white rounded-2xl shadow dark:border dark:bg-gray-800 dark:border-gray-700 px-10 mx-25">
     <div class="p-10 space-y-4 md:space-y-6 sm:p-8">
 
+        
 
-        <!--
-                        1. The form includes fields for email and password confirmation.
-                        2. Each field is wrapped in a div, with a label and an input element.
-                        3. The 'required' attribute is used to ensure that the user fills in all fields.
-                        -->
-        <form action="/create-offer" method="post" class="flex flex-col space-y-5 md:space-y-6">
+        <form action="/offer/{{$originalOffer->id}}/update" method="post" class="flex flex-col space-y-5 md:space-y-6">
 
             {{-- cross-site request forgery --> generates a hidden input with a unique value that laravel will check. This makes sure that only the submitted form can go to the register page --}}
             @csrf
@@ -60,10 +58,10 @@
                         <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
                         <select required name="type" id="type" 
                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Choose offer or request">
-                                <option value=""></option>
+                                >
+                            {{-- $offer->type == $type ? 'selected' : '' checks if the current type value matches the type of the offer. If it does, it adds the selected attribute to the option tag, which pre-selects that option in the dropdown. --}}
                             @foreach ($properties['type'] as $type)
-                                <option value="{{ $type }}" >{{ ucwords($type) }}</option>
+                                <option value="{{ $type }}" {{ $originalOffer->type == $type ? 'selected' : '' }}>{{ ucwords($type) }}</option>
                             @endforeach
                         </select>
                         @error('type')
@@ -76,9 +74,8 @@
                         <label for="species" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Species</label>
                         <select required name="species" id="species" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         >   
-                            <option value=""></option>
                             @foreach ($properties['species'] as $species)
-                                <option value="{{ $species }}" >{{ ucwords($species) }}</option>
+                                <option value="{{ $species }}" {{ $originalOffer->species->name == $species ? 'selected' : '' }}>{{ ucwords($species) }}</option>
                             @endforeach
                         </select>
                         @error('species')
@@ -91,9 +88,9 @@
                         <label for="strain" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Strain</label>
                         <select required name="strain" id="strain" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         >   
-                            <option value=""></option>
+                            
                             @foreach ($properties['strain'] as $strain)
-                                <option value="{{ $strain }}" >{{ ucwords($strain) }}</option>
+                                <option value="{{ $strain }}" {{ $originalOffer->strain == $strain ? 'selected' : '' }}>{{ ucwords($strain) }}</option>
                             @endforeach
                         </select>
                         @error('strain')
@@ -106,7 +103,7 @@
                         <label for="genetics" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Genetics</label>
                         <input required type="genetics" name="genetics" id="genetics"
                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="e.g. Clec4g-iCre wt/wt" required="" value="{{ old('genetics') }}"> {{-- this will set the default value of the input equal to the valueit had before --}}
+                            placeholder="e.g. Clec4g-iCre wt/wt" required="" value="{{ $originalOffer->genetics }}"> 
 
                         {{-- errors are saver in $errors. @error blade can be used to display them. $message is the error message and is linked to the key wih is the input field name --}}
                         @error('genetics')
@@ -123,9 +120,9 @@
                         <label for="sex" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sex</label>
                         <select required name="sex" id="sex" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         >   
-                            <option value=""></option>
+                            
                             @foreach ($properties['sex'] as $sex)
-                                <option value="{{ $sex }}" >{{ ucwords($sex) }}</option>
+                                <option value="{{ $sex }}" {{ $originalOffer->sex == $sex ? 'selected' : '' }}>{{ ucwords($sex) }}</option>
                             @endforeach
                         </select>
                         @error('sex')
@@ -136,7 +133,10 @@
                     {{-- date of birth --}}
                     <div class="mb-5">
                         <label for="dob" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date Of Birth</label>
-                        <input type="date" name="dob" id="dob" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <input type="date" 
+                                name="dob" id="dob"
+                                value="{{ Carbon::createFromFormat('Y-m-d', $originalOffer->dob)->format('Y-m-d') }}"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         @error('dob')
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
                         @enderror
@@ -147,9 +147,9 @@
                         <label for="vital_status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vital Status</label>
                         <select required name="vital_status" id="vital_status" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         >   
-                            <option value=""></option>
+                            
                             @foreach ($properties['vital_status'] as $vital_status)
-                                <option value="{{ $vital_status }}" >{{ ucwords($vital_status) }}</option>
+                                <option value="{{ $vital_status }}" {{ $originalOffer->vital_status == $vital_status ? 'selected' : '' }}>{{ ucwords($vital_status) }}</option>
                             @endforeach
                         </select>
                         @error('vital_status')
@@ -161,7 +161,8 @@
                         <label for="removed_organs" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Removed Organs</label>
                         <input required type="text" name="removed_organs" id="removed_organs"
                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="which organs have already been removed?" required autocomplete="off" value="{{ old('removed_organs') }}"> {{-- this will set the default value of the input equal to the valueit had before --}}
+                            placeholder="which organs have already been removed?" required autocomplete="off" 
+                            value="{{ $originalOffer->removed_organs }}"> {{-- this will set the default value of the input equal to the valueit had before --}}
 
                         {{-- errors are saver in $errors. @error blade can be used to display them. $message is the error message and is linked to the key wih is the input field name --}}
                         @error('removed_organs')
@@ -181,7 +182,8 @@
                         <label for="amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of animals</label>
                         <input required type="number" name="amount" id="amount" min="1" max="1000"
                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="How many animals?" required autocomplete="off" value="{{ old('removed_organs') }}"> {{-- this will set the default value of the input equal to the valueit had before --}}
+                            placeholder="How many animals?" required autocomplete="off" 
+                            value="{{ $originalOffer->amount }}"> {{-- this will set the default value of the input equal to the valueit had before --}}
 
                         {{-- errors are saver in $errors. @error blade can be used to display them. $message is the error message and is linked to the key wih is the input field name --}}
                         @error('amount')
@@ -194,9 +196,9 @@
                         <label for="euthanasia_method" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Euthanasia Method</label>
                         <select required name="euthanasia_method" id="euthanasia_method" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         >   
-                            <option value=""></option>
+                            
                             @foreach ($properties['euthanasia_method'] as $euthanasia_method)
-                                <option value="{{ $euthanasia_method }}" >{{ ucwords($euthanasia_method) }}</option>
+                                <option value="{{ $euthanasia_method }}" {{ $originalOffer->euthanasia_method->name == $euthanasia_method ? 'selected' : '' }}>{{ ucwords($euthanasia_method) }}</option>
                             @endforeach
                         </select>
                         @error('euthanasia_method')
@@ -207,7 +209,10 @@
                     {{-- expiration date --}}
                     <div class="mb-5">
                         <label for="expiration" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Until when is the offer valid?</label>
-                        <input type="date" name="expiration" id="expiration" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <input type="date" 
+                                name="expiration" id="expiration" 
+                                value="{{ Carbon::createFromFormat('Y-m-d', $originalOffer->expiration_date)->format('Y-m-d') }}"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         @error('expiration')
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
                         @enderror
@@ -218,7 +223,8 @@
                         <label for="organisation" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Organisation</label>
                         <input required type="text" name="organisation" id="organisation" 
                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Which organisation are you from?" required autocomplete="off" value="{{ old('removed_organs') }}"> {{-- this will set the default value of the input equal to the valueit had before --}}
+                            placeholder="Which organisation are you from?" required autocomplete="off" 
+                            value="{{ $originalOffer->organisation }}"> {{-- this will set the default value of the input equal to the valueit had before --}}
 
                         {{-- errors are saver in $errors. @error blade can be used to display them. $message is the error message and is linked to the key wih is the input field name --}}
                         @error('organisation')
@@ -231,7 +237,8 @@
                         <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
                         <input required type="text" name="location" id="location"                             
                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Where are the animals currently?" required autocomplete="off" value="{{ old('removed_organs') }}"> {{-- this will set the default value of the input equal to the valueit had before --}}
+                            placeholder="Where are the animals currently?" required autocomplete="off" 
+                            value="{{ $originalOffer->location }}"> {{-- this will set the default value of the input equal to the valueit had before --}}
 
                         {{-- errors are saver in $errors. @error blade can be used to display them. $message is the error message and is linked to the key wih is the input field name --}}
                         @error('location')
@@ -243,18 +250,18 @@
             
             <div >
                 <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                <textarea   name="description" id="description" cols="30" rows="10"
+                <textarea   name="description" id="description" cols="30" rows="5"
                             class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none py-2 px-4 mb-4 bg-gray-50 rounded-lg rounded-t-lg border border-gray-300 dark:bg-gray-800 dark:border-gray-700"
                             placeholder="Give a detailed description of the animals and the offer..." 
-                            required></textarea>
+                            required>{{ $originalOffer->description }}</textarea>
             </div>
-            
 
 
             {{-- submit button --}}
             <button type="submit"
-                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3.5  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4 ">Submit
-                your offer</button>
+                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3.5  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4 ">
+                Save your changes
+            </button>
 
 
 

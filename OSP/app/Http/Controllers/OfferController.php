@@ -78,8 +78,8 @@ class OfferController extends Controller
             'location'=> 'required|min:2|max:255',
             'organisation'=> 'required|min:2|max:255',
             'removed_organs'=> 'required|min:2|max:1000',
-            'amount'=> 'required|number|min:1|max:1000',
-            'description'=> 'required|number|min:1|max:2000',
+            'amount'=> 'required|integer|min:1|max:1000',
+            'description'=> 'required|min:1|max:2000',
         ]);
 
         //get the necessry data from the request
@@ -109,12 +109,86 @@ class OfferController extends Controller
                 'published_at'=> now(),
             ]);
         } catch (\Exception $e) {
-            return back()->with('error', $e->getMessage()); //'The offer could not be created. Please try again later.'
+            return back()->with('error', 'The offer could not be created. Please try again later.'); 
         }
 
         return back()->with('success','The offer was created successfully.');
 
     }
 
+    public function destroy(Offer $offer){
+        
+        try {
+            $offer->delete();
+        } catch (\Throwable $th) {
+            return back()->with('error','The offer could not be deleted. Please try again later.');
+        }
+        
+        return back()->with('success','The offer was deleted successfully.');
+    }
 
+    public function updateCreate(Offer $offer){
+        //get all offers for input values
+        $allOffers = Offer::latest()->with('user', 'species', 'euthanasia_method')->get();
+        
+        
+
+        return view('offers/editOffer', [
+            'originalOffer' => $offer,
+            'allOffers' => $allOffers,
+        ]);
+        
+    }
+
+    public function updateStore(Request $request, Offer $offer){
+        //validate the request
+        
+        request()->validate([
+            'species'=> 'required|min:2|max:255',
+            'euthanasia_method'=> 'required|min:2|max:255',
+            'type'=> 'required|min:2|max:255',
+            'strain'=> 'required|min:2|max:255',
+            'genetics'=> 'required|min:2|max:255',
+            'dob'=> 'required|date',
+            'expiration'=>'required|date',
+            'location'=> 'required|min:2|max:255',
+            'organisation'=> 'required|min:2|max:255',
+            'removed_organs'=> 'required|min:2|max:1000',
+            'amount'=> 'required|min:1|max:1000',
+            'description'=> 'required|min:1|max:2000',
+        ]);
+
+        //get the necessry data from the request
+        $species_id = Species::where('name', $request['species'])->first()->id;
+        $euthanasia_method_id = Euthanasia_method::where('name', $request['euthanasia_method'])->first()->id;
+
+        //update the offer
+        try {
+            $offer->update([
+                'user_id'=> auth()->user()->id,
+                'species_id'=> $species_id,
+                'euthanasia_method_id'=> $euthanasia_method_id,
+                'type'=> $request['type'],
+                'strain'=> $request['strain'],
+                'genetics'=> $request['genetics'],
+                'sex'=> $request['sex'],
+                'dob'=> $request['dob'],
+                'vital_status'=> $request['vital_status'],
+                'expiration_date'=> $request['expiration'],
+                'location'=> $request['location'],
+                'organisation'=> $request['organisation'],
+                'removed_organs'=> $request['removed_organs'],
+                'amount'=> $request['amount'],
+                'description'=> $request['description'],
+                'published_at'=> now(),
+                
+            ]);
+           
+        } catch (\Exception $e) {
+            return back()->with('error', $e->getMessage()); //'The offer could not be created. Please try again later.'
+        }
+
+        return back()->with('success','Your offer was successfully edited.');
+
+    }
 }

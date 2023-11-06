@@ -40,11 +40,17 @@ Route::post('/offer/{offer:id}/request', [RequestController::class,'store'])->mi
 
 //create offer
 Route::get('/create-offer', [OfferController::class,'create'])->middleware('auth');
-Route::post('/create-offer', [OfferController::class,'store'])->middleware('auth'); //todo
+Route::post('/create-offer', [OfferController::class,'store'])->middleware('auth');
+
+//edit or delete an offer
+Route::get('/offer/{offer:id}/delete', [OfferController::class,'destroy'])->middleware('auth');
+Route::get('/offer/{offer:id}/update', [OfferController::class,'updateCreate'])->middleware('auth');
+Route::post('/offer/{offer:id}/update', [OfferController::class,'updateStore'])->middleware('auth');
+
 
 //comments
 Route::post('/offer/{offer:id}/comments-post', [CommentController::class,'store'])->middleware('auth');
-Route::post('/offer/{offer:id}/comments-update/{comments:id}', [CommentController::class,'update'])->middleware('auth'); //todo or to delete
+//Route::post('/offer/{offer:id}/comments-update/{comments:id}', [CommentController::class,'update'])->middleware('auth'); //todo or to delete
 Route::delete('/offer/{offer:id}/comments-delete/{comments:id}', [CommentController::class,'destroy'])->middleware('auth');
 
 //registration --> makes only sense if you are not logged in. that is why it is using the guest middleware (defined by laravel). 

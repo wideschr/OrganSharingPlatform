@@ -1,7 +1,7 @@
 @props(['selections'])
 
 
-<div class="flex items-center flex-wrap whitespace-wrap mb-3">
+<div class="flex items-center flex-wrap whitespace-wrap mb-3 -ml-1">
 
     {{-- clear filters button --}}
     <a href="/" class="flex items-center">

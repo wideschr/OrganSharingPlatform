@@ -4,7 +4,7 @@
     <x-slot name="content">
 
         {{-- page title --}}
-        <div class="flex flex-col justify-center items-align  pt-10 pb-5 text-center bg-gray-50">
+        <div class="flex flex-col justify-center items-align  pt-20 pb-5 text-center bg-gray-50">
             <x-page-title>
                 Contact the researcher
                 <x-slot name="introText">
@@ -13,7 +13,7 @@
                     Write your message here and we'll make sure it gets to the researcher.
                 </x-slot>
             </x-page-title>
-            <div class="w-full flex justify-center bg-gray-50 pb-10">
+            <div class="w-full flex justify-center bg-gray-50 pb-20">
                 <x-button-default>
                     Create your own offer
                     <x-slot name='href'>"create-offer"</x-slot>

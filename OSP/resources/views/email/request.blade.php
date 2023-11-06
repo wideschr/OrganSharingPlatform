@@ -17,7 +17,7 @@
 <body>
 
     {{-- page title --}}
-    <div class="flex flex-col justify-center items-align  pt-10 pb-5 text-center bg-gray-50">
+    <div class="flex flex-col justify-center items-align  pt-20 pb-5 text-center bg-gray-50">
         <x-page-title>
             Message about one of your offers
             <x-slot name="introText">
@@ -27,7 +27,7 @@
                 If you want to see the offer, you can click on the button below.
             </x-slot>
         </x-page-title>
-        <div class="w-full flex justify-center bg-gray-50 pb-10">
+        <div class="w-full flex justify-center bg-gray-50 pb-20">
             <x-button-default>
                 Go to the offer
                 <x-slot name='href'>{{url('/offer/' . $offer->id)}}</x-slot>

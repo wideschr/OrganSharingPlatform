@@ -5,7 +5,7 @@
     <x-slot name="content">
 
         {{-- page title --}}
-        <div class="flex flex-col justify-center items-align  pt-10 pb-5 text-center bg-gray-50">
+        <div class="flex flex-col justify-center items-align  pt-20 pb-5 text-center bg-gray-50">
             <x-page-title>
                 Offer Details
                 <x-slot name="introText">
@@ -14,7 +14,7 @@
                     discussion about this offer.
                 </x-slot>
             </x-page-title>
-            <div class="w-full flex justify-center bg-gray-50 pb-10">
+            <div class="w-full flex justify-center bg-gray-50 pb-20">
                 <x-button-default>
                     Create your own offer
                     <x-slot name='href'>"create-offer"</x-slot>
@@ -28,11 +28,24 @@
 
                 {{-- offer details --}}
                 <section class="flex flex-col overflow-auto lg:w-4/5 mx-auto grid ">
+                    {{-- back button --}}
+                    <div class="mb-10 -pl-5" style="width:100%;">
+                        <x-button-alternative>
 
+                            <a href="javascript:history.back()">
+                                <div class="flex align-center justify-center">
+                                    < Back </div>
+                            </a>
+
+                        </x-button-alternative>
+                    </div>
                     {{-- description and details block --}}
                     <div class="grid grid-cols-12">
 
                         <div class="col-span-6">
+
+                            
+
                             {{-- description --}}
                             <div class="flex flex-col items-start justify-start ">
                                 <h2
@@ -43,7 +56,7 @@
 
                                 {{-- buttons --}}
                                 <div class="flex mb-40 ">
-                                    <div class="flex "> {{-- This div is here because the default button is aligned at justify-end, which is not what we want. --}}
+                                    <div class="flex -ml-1"> {{-- This div is here because the default button is aligned at justify-end, which is not what we want. --}}
                                         {{-- CTA --}}
                                         <x-button-default>
                                             <x-slot name='href'>"/offer/{{ $offer->id }}/request"</x-slot>

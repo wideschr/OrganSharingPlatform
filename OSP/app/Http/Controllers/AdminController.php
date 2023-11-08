@@ -133,8 +133,6 @@ class AdminController extends Controller
                     'profile_picture' => request('profile_picture') ? request('profile_picture')->store('profile_pictures', 'public') : $user->profile_picture,
                     'is_admin' => $is_admin,
                 ]);
-
-                dd($user);
             } catch (\Exception $e) {
                 return back()->with('error', $e);
             }
@@ -164,7 +162,7 @@ class AdminController extends Controller
                 'profile_picture_url' => 'file|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
-
+           
             try {
                 
                 //set the is-admin

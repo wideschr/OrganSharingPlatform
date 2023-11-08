@@ -64,7 +64,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\ContactFormMessage::factory(25)->create();
 
         //create faqs
-        \App\Models\Faq::factory(10)->create();
+        \App\Models\Faq::factory(6)->create();
 
     }
 }

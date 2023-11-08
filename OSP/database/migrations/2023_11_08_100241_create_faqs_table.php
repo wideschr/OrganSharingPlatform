@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('faqs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
+            $table->string('topic');
             $table->string('question');
             $table->text('answer');
             $table->timestamps();

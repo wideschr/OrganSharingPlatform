@@ -18,7 +18,7 @@
             <div class="flex flex-col w-full bg-white p-6 rounded-lg">
 
                 {{-- tabbed container --}}
-                <div class="grid grid-col-12 mx-10 px-10 " >
+                <div class="grid grid-col-12 mx-5 " >
                     <x-tabbed-container :users="$users" :offers="$offers" />
                     
                 </div>

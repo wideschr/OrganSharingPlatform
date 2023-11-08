@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\MailchimpController;
 use App\Http\Controllers\MyOfferController;
 use App\Http\Controllers\OfferController;
@@ -91,7 +92,7 @@ Route::post('/contact', [ContactController::class,'store']);
 Route::get('my-offers/{user:id}', [MyOfferController::class,'create']);
 
 //faq
-route::get('/faq', [FaqController::class,'']);
+route::get('/faq', [FaqController::class,'create']);
 
 ///////admin
 //get view

@@ -14,7 +14,7 @@
         {{-- make links blue when active route --}}
         <a href="/about"
             class=" border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('register') ? 'text-blue-700' : '' }}">About</a>
-        <a href="/Faq"
+        <a href="/faq"
             class="border-b-2 border-transparent text-medium font-bold uppercase mx-5 py-1 {{ request()->is('/') ? 'text-blue-700' : '' }}">FAQ</a>
         <a href="/contact"
             class=" border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('register') ? 'text-blue-700' : '' }}">Contact</a>

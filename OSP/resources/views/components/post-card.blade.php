@@ -125,7 +125,7 @@
 
                                 <x-button-red>
                                     <x-slot name='href'>"/offer/{{ $offerInfo['id'] }}/delete"</x-slot>
-                                    <img src="/images/icon_delete_black.png" alt="" style="max-width:1.5rem">
+                                    <img src="/images/icon_delete_white.png" alt="" style="max-width:1rem">
                                 </x-button-red>
                             @endif
 

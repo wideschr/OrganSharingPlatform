@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MailchimpController;
@@ -88,6 +89,19 @@ Route::post('/contact', [ContactController::class,'store']);
 
 //my offers
 Route::get('my-offers/{user:id}', [MyOfferController::class,'create']);
+
+//faq
+route::get('/faq', [FaqController::class,'']);
+
+///////admin
+//get view
+Route::get('/admin', [AdminController::class,'create'])->middleware('adminsOnly'); //made this middleware myself and added it to the kernel.php file
+
+//users
+Route::post('/admin/create-user', [AdminController::class,'storeCreatedUser'])->middleware('adminsOnly');
+Route::get('/admin/{user:id}/delete', [AdminController::class,'destroy'])->middleware('adminsOnly');
+Route::get('/admin/{user:id}/edit', [AdminController::class,'editUserCreate'])->middleware('adminsOnly');
+Route::post('/admin/{user:id}/edit', [AdminController::class,'editUserStore'])->middleware('adminsOnly');
 
 
 

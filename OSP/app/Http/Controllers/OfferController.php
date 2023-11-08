@@ -66,6 +66,8 @@ class OfferController extends Controller
 
 
     public function store(Request $request){
+
+        
         //validate the request
         $arguments =  request()->validate([
             'species'=> 'required|min:2|max:255',
@@ -74,7 +76,7 @@ class OfferController extends Controller
             'strain'=> 'required|min:2|max:255',
             'genetics'=> 'required|min:2|max:255',
             'dob'=> 'required|date',
-            'expiration_date'=>'required|date',
+            'expiration'=>'required|date',
             'location'=> 'required|min:2|max:255',
             'organisation'=> 'required|min:2|max:255',
             'removed_organs'=> 'required|min:2|max:1000',

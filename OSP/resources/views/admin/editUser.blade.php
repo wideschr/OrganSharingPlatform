@@ -4,22 +4,6 @@
     {{-- content --}}
     <x-slot name="content">
 
-        {{-- page title --}}
-        <div class="flex flex-col justify-center items-align  pt-20 pb-5 text-center bg-gray-50">
-            <x-page-title>
-                Hi, {{ $user->name }}
-                <x-slot name="introText">
-                    On this page you can see your profile data and change anything you want. <br>
-                </x-slot>
-            </x-page-title>
-            <div class="w-full flex justify-center bg-gray-50 pb-20">
-                <x-button-default>
-                    Create your own offer
-                    <x-slot name='href'>"/create-offer"</x-slot>
-                </x-button-default>
-            </div>
-        </div>
-
         {{-- main screen --}}
         <div class="flex justify-center mt-10">
             <div class="flex flex-col w-full bg-white">
@@ -27,7 +11,19 @@
                 {{-- profile content --}}
                 <section class="flex flex-col overflow-auto lg:w-4/5 mx-auto grid ">
 
-                    <form action="/profile/edit" method="post" enctype="multipart/form-data"
+                    {{-- back button --}}
+                    <div class="mb-10 -pl-5" style="width:100%;">
+                        <x-button-alternative>
+
+                            <a href="/admin">
+                                <div class="flex align-center justify-center">
+                                    < Back </div>
+                            </a>
+
+                        </x-button-alternative>
+                    </div>
+
+                    <form action="/admin/{{$user->id}}/edit" method="post" enctype="multipart/form-data"
                         class="space-y-4 md:space-y-6">
                         {{-- cross-site request forgery --> generates a hidden input with a unique value that laravel will check. This makes sure that only the submitted form can go to the register page --}}
                         @csrf
@@ -51,7 +47,7 @@
                                     class="block mt-5 mb-2 text-sm font-medium text-gray-900 dark:text-white">Biography</label>
                                 <textarea name="biography" id="biography" cols="30" rows="10"
                                     class=" w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none py-2 px-4 mb-4 bg-gray-50 rounded-lg rounded-t-lg border border-gray-300 dark:bg-gray-800 dark:border-gray-700"
-                                    placeholder="Write something about yourself and your research interests..." required value="{{ $user->biography }}">{{ $user->biography }}</textarea>
+                                    placeholder="Write something about yourself and your research interests..." value="{{ $user->biography }}">{{ $user->biography }}</textarea>
                             </div>
 
                             {{-- right side --}}
@@ -123,6 +119,17 @@
                                     <input type="password" name="password_confirmation" id="password_confirmation"
                                         placeholder="••••••••" autocomplete="off"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                </div>
+
+                                <div>
+                                    <label for="is_admin"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Admin
+                                        rights</label>
+                                    <select name="is_admin" id="is_admin"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option value="0" @if ($user->is_admin == 0) selected @endif>No</option>
+                                        <option value="1" @if ($user->is_admin == 1) selected @endif>Yes</option>
+                                    </select>
                                 </div>
 
                                 {{-- submit button --}}

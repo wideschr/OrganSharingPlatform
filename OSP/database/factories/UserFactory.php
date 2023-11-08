@@ -24,7 +24,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'is_admin' => fake()->boolean(),
-            'profile_picture_url' => fake()->imageUrl(),
+            'profile_picture_url' => 'profile_pictures/default_profile_picture.png',
             'biography' => fake()->paragraph(2),
             'remember_token' => Str::random(10),
         ];

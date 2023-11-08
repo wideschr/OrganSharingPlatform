@@ -66,7 +66,7 @@
                 </footer>
 
                 {{-- body --}}
-                <p class="text-gray-500 dark:text-gray-400">{{ $comment->body }}</p>
+                <p class="text-gray-500 text-medium dark:text-gray-400">{{ $comment->body }}</p>
 
             </article>
         @endforeach

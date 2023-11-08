@@ -15,7 +15,7 @@
             <div class="w-full flex justify-center bg-gray-50 pb-20">
                 <x-button-default>
                     Create your own offer
-                    <x-slot name='href'>"create-offer"</x-slot>
+                    <x-slot name='href'>"/create-offer"</x-slot>
                 </x-button-default>
             </div>
         </div>

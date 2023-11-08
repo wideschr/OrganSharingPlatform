@@ -1,5 +1,13 @@
 @props(['offers'])
 
+<div class=" pb-2 ">
+    <x-button-alternative>
+        <a href="/create-offer">
+            + Add new offer
+        </a>
+        
+    </x-button-alternative>
+</div>
 
 <div class="relative sm:rounded-lg">
 
@@ -74,15 +82,14 @@
 
                     <td class="flex items-center px-6 py-4 space-x-3">
                         <x-button-alternative>
-                            <a href="/admin/{{ $offer->id }}/edit">
+                            <a href="/offer/{{$offer->id}}/update">
                                 <img src="/images/icon_edit_black.png" alt="" style="max-width:1rem">
                             </a>
                         </x-button-alternative>
 
-                        <x-button-red>
-                            <x-slot name='href'>"/admin/{{ $offer->id }}/delete"</x-slot>
+                        <a href="/offer/{{$offer->id}}/delete" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mx-1 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                             <img src="/images/icon_delete_white.png" alt="" style="max-width:1rem">
-                        </x-button-red>
+                        </a>
                     </td>
 
                     <td class="px-6 py-4 text-blue-700 underline">

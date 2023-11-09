@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\MailchimpController;
 use App\Http\Controllers\MyOfferController;
 use App\Http\Controllers\OfferController;
@@ -31,7 +32,7 @@ use Illuminate\Support\Facades\Route;
 
 
 //See offers (filtered / searched or not)
-Route::get('/', [OfferController::class, 'filter']);
+Route::get('/', [OfferController::class, 'filter'])->name('home');
 
 //see offer details 
 Route::get('/offer/{offer:id}', [OfferController::class, 'show']);
@@ -64,6 +65,12 @@ Route::post('/register', [RegisterController::class,'store'])->middleware('guest
 Route::get('/login', [SessionController::class,'create'])->middleware('guest')->name('login'); //need to add the name because in the auth middleware it is looking for a route named login to redirect to if the user gets logged out
 Route::post('/login', [SessionController::class,'store'])->middleware('guest');
 Route::get('/logout', [SessionController::class,'destroy'])->middleware('auth');
+
+//forgot password
+Route::get('password/reset', [ForgotPasswordController::class,'create']);//->middleware('guest');
+Route::post('password/reset', [ForgotPasswordController::class,'sendResetLinkEmail']);//->middleware('guest');
+Route::get('password/reset/{email}', [ForgotPasswordController::class,'showResetPassword']);//->middleware('guest');
+Route::post('password/reset/{email}', [ForgotPasswordController::class,'storeResetPassword']);//->middleware('guest');
 
 
 //about page

@@ -11,10 +11,10 @@ class FaqController extends Controller
     public function create()
     {
         //get faqs from db
-        $faq = Faq::all()->sortByDesc('topic');
+        $faqs = Faq::all()->groupBy('topic');
 
         return view('faq.faq',[
-            'faq' => $faq,
+            'faqs' => $faqs,
         ]);
     }
 

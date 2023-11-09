@@ -14,8 +14,8 @@
             </x-page-title>
             <div class="w-full flex justify-center bg-gray-50 pb-20">
                 <x-button-default>
-                    Create your own offer
-                    <x-slot name='href'>"/create-offer"</x-slot>
+                    Go to the contact form
+                    <x-slot name='href'>"/contact"</x-slot>
                 </x-button-default>
             </div>
         </div>
@@ -24,7 +24,7 @@
         <div class="flex justify-center  mt-10">
             <div class="flex flex-col  w-3/5 bg-white rounded-lg">
 
-                <x-faq-accordeon :faq="$faq"/>
+                <x-faq-accordeon :faqs="$faqs"/>
 
             </div>
 

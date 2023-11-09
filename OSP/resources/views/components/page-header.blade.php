@@ -2,32 +2,32 @@
     {{-- logo --}}
     <div class="">
         <a href="/">
-            <img class="h-10 " src="images/logo-no-background.png" alt="OSP Logo">
+            <img class="h-10 " src="/images/logo-no-background.png" alt="OSP Logo">
         </a>
     </div>
 
     {{-- title --}}
-    <a href="/" class="flex-grow ml-10 "><h1 class="text-xl flex-grow">Organ Sharing Platform</h1></a>
+    <a href="/" class="flex-grow text-blue-700 ml-10 font-bold "><h1 class="text-xl flex-grow">Organ Sharing Platform</h1></a>
 
     {{-- links --}}
     <div class="flex items-center">
         {{-- make links blue when active route --}}
+        <a href="/"
+            class=" border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('/') ? 'text-blue-700' : '' }}">Offers & Requests</a>
         <a href="/about"
-            class=" border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('register') ? 'text-blue-700' : '' }}">About</a>
+            class=" border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('about') ? 'text-blue-700' : '' }}">About</a>
         <a href="/faq"
-            class="border-b-2 border-transparent text-medium font-bold uppercase mx-5 py-1 {{ request()->is('/') ? 'text-blue-700' : '' }}">FAQ</a>
+            class="border-b-2 border-transparent text-medium font-bold uppercase mx-5 py-1 {{ request()->is('faq') ? 'text-blue-700' : '' }}">FAQ</a>
         <a href="/contact"
-            class=" border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('register') ? 'text-blue-700' : '' }}">Contact</a>
+            class=" border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('contact') ? 'text-blue-700' : '' }}">Contact</a>
 
         {{-- if authenticated --}}
         @if (auth()->check())
-            <a href="/my-offers/{{ auth()->user()->id }}"
-                class="border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('offers-requests') ? 'text-blue-700' : '' }}">My
-                Offers</a>
+            
 
             <div class="relative " id="user-menu">
                 <a href="#"
-                    class=" border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 {{ request()->is('account') ? 'text-blue-700' : '' }}">
+                    class=" border-b-2 border-transparent text-medium font-bold uppercase mx-7 py-1 ">
                     {{ auth()->user()->username }}
                     <i class="fas fa-chevron-down"></i> <!-- Dropdown arrow -->
                 </a>
@@ -38,6 +38,9 @@
                             class="border-b-2 border-transparent block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                             role="menuitem">Admin</a>
                     @endif
+                    <a href="/my-offers/{{ auth()->user()->id }}"
+                        class="border-b-2 border-transparent block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My
+                        Offers</a>
                     <a href="/profile"
                         class="border-b-2 border-transparent block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                         role="menuitem">Profile</a>

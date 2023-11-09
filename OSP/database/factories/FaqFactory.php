@@ -21,9 +21,9 @@ class FaqFactory extends Factory
             'user_id' =>function () {
                 return rand(1, User::count());
             },
-            'topic' => $this->faker->sentence(3),
+            'topic' => $this->faker->randomElement(['General', 'Offers', 'Requests', 'Comments']),
             'question' => $this->faker->sentence(10),
-            'answer' => $this->faker->paragraph(10),
+            'answer' => $this->faker->paragraph(15),
         ];
     }
 }

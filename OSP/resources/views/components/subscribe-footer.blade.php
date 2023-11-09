@@ -1,5 +1,5 @@
 <footer class="bg-gray-100  rounded-xl text-center py-16 px-10 mt-16">
-    <img src="./images/placeholder.png" alt="" class="mx-auto mb-6" style="width: 145px;">
+    <img src="/images/logo-no-background.png" alt="" class="mx-auto mb-6" style="width: 145px;">
     <h5 class="text-3xl">Stay in touch with the latest offers</h5>
     <p class="text-sm mt-3">Promise to keep the inbox clean. No bugs.</p>
 

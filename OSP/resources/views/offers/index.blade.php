@@ -6,9 +6,9 @@
         {{-- page title --}}
         <div class="flex flex-col justify-center items-align  pt-20 pb-5 text-center bg-gray-50">
             <x-page-title>
-                Overview
+                Offers & Requests
                 <x-slot name="introText">
-                    On this page you get an overview of all the offers available on the platform. This also contains the
+                    On this page you get an overview of all the offers & Requests available on the platform. This also contains the
                     offers that are expired.
                     You can use the filters or search bar to find the offers you are looking for.
                 </x-slot>

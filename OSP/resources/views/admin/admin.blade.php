@@ -19,7 +19,7 @@
 
                 {{-- tabbed container --}}
                 <div class="grid grid-col-12 mx-5 " >
-                    <x-tabbed-container :users="$users" :offers="$offers" />
+                    <x-tabbed-container :users="$users" :offers="$offers" :faqs="$faqs"/>
                     
                 </div>
 

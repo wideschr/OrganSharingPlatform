@@ -92,7 +92,11 @@ Route::post('/contact', [ContactController::class,'store']);
 Route::get('my-offers/{user:id}', [MyOfferController::class,'create']);
 
 //faq
-route::get('/faq', [FaqController::class,'create']);
+Route::get('/faq', [FaqController::class,'create']);
+Route::post('/admin/create-faq', [FaqController::class,'store'])->middleware('adminsOnly');
+Route::post('/admin/edit-faq/{faq:id}', [FaqController::class,'update'])->middleware('adminsOnly');
+Route::get('/admin/delete-faq/{faq:id}', [FaqController::class,'destroy'])->middleware('adminsOnly');
+
 
 ///////admin
 //get view

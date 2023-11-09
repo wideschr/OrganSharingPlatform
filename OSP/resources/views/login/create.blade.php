@@ -66,12 +66,11 @@
                             {{-- Remember me --}}
                             <div class="flex items-start">
                                 <div class="flex items-center h-5">
-                                    <input  id="Remember" aria-describedby="Remember" type="checkbox"
-                                        class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                                        >
+                                    <input id="remember" name="remember" type="checkbox"
+                                        class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800">
                                 </div>
                                 <div class="ml-3 text-sm">
-                                    <label for="Remember" class="font-light text-gray-500 dark:text-gray-300">Remember me</label>
+                                    <label for="remember" class="font-light text-gray-500 dark:text-gray-300">Remember me</label>
                                 </div>
                             </div>
                             

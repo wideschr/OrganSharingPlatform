@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Faq;
 use App\Models\Offer;
 use App\Models\User;
 use Hash;
@@ -16,10 +17,12 @@ class AdminController extends Controller
 
         $users = User::all()->sortBy('name');
         $offers = Offer::latest()->with('user', 'species', 'euthanasia_method')->get();
+        $faqs = Faq::all();
 
         return view("admin.admin", [
             'users' => $users,
             'offers' => $offers,
+            'faqs'=> $faqs
         ]);
     }
 

@@ -23,7 +23,7 @@ class FaqFactory extends Factory
             },
             'topic' => $this->faker->sentence(3),
             'question' => $this->faker->sentence(10),
-            'answer' => $this->faker->paragraph(2),
+            'answer' => $this->faker->paragraph(10),
         ];
     }
 }

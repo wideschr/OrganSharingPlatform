@@ -76,7 +76,7 @@
                             Powered by Cutting-Edge Technologies</h2>
                         <!-- Add the information about technologies used with appropriate styling -->
                         <p class="mb-6  ">
-                            Footer Design inspired by <a
+                            Overall Design inspired by <a
                                 href="https://flowbite.com/blocks/application/dashboard-footer/"
                                 class="underline">Flowbite</a><br>
                             Header Design influenced by <a
@@ -87,7 +87,8 @@
                                 Awesome</a><br>
                             Newsletter Hub powered by <a href="https://mailchimp.com/"
                                 class="underline">Mailchimp</a><br>
-                            Smooth Communication with <a href="https://www.mailgun.com/" class="underline">Mailgun</a>
+                            Smooth Communication with <a href="https://mailtrap.io/home" class="underline">Mailtrap</a><br>
+                            Learning from <a href="https://laracasts.com/series/laravel-8-from-scratch" class="underline">Laracasts</a><br>
                         </p>
                     </section>
 

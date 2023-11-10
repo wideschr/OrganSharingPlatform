@@ -5,14 +5,14 @@
     <x-slot name="content">
 
         {{-- page title --}}
-        <div class="flex flex-col justify-center items-align  pt-20 pb-5 text-center bg-gray-50">
+        <div class="flex flex-col justify-center items-align  pt-20 pb-5 text-center bg-gray-50" style="background-image:url({{ asset('images/page-background.jpg')}}) ;">
             <x-page-title>
                 Hi, {{ $user->name }}
                 <x-slot name="introText">
                     On this page you can see your profile data and change anything you want. <br>
                 </x-slot>
             </x-page-title>
-            <div class="w-full flex justify-center bg-gray-50 pb-20">
+            <div class="w-full flex justify-center pb-20">
                 <x-button-default>
                     Create your own offer
                     <x-slot name='href'>"/create-offer"</x-slot>

@@ -4,7 +4,7 @@
     <x-slot name="content">
 
         {{-- page title --}}
-        <div class="flex flex-col justify-center items-align pt-10 pb-10 pt-20 text-center bg-gray-50">
+        <div class="flex flex-col justify-center items-align pt-10 pb-10 pt-20 text-center bg-gray-50" style="background-image:url({{ asset('images/page-background.jpg')}}) ;">
             <x-page-title>
                 Reset Password
                 <x-slot name="introText">

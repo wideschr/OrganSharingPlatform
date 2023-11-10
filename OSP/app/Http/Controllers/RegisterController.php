@@ -38,9 +38,9 @@ class RegisterController extends Controller
             'password'=> Hash::make(request('password')),
             'is_admin' => false,
             'biography' => request('biography'),
-            'profile_picture'=> request('profile_picture') ? request('profile_picture')->store('profile_pictures', 'public') : 'profile_pictures/default_profile_picture.png',
+            'profile_picture_url'=> request('profile_picture') ? request('profile_picture')->store('profile_pictures', 'public') : 'profile_pictures/default_profile_picture.png',
         ]);  
-
+       
         //sign in user
         auth()->login($user);
 

@@ -18,14 +18,16 @@
 
 <body class="flex flex-col font-sans min-h-screen">
 
-    {{-- header --}}
-    <x-page-header />
+    <div class="" style="background-image:url({{ asset('images/page-background.jpg')}}) ;">
+        {{-- header --}}
+        <x-page-header />
+    </div>
 
 
     <section class=" flex-grow">
 
         <?php
-
+        
         if (isset($content)) {
             echo $content;
         }
@@ -33,11 +35,11 @@
         if (isset($register)) {
             echo $register;
         }
-
+        
         if (isset($login)) {
             echo $login;
         }
-
+        
         if (isset($createOffer)) {
             echo $createOffer;
         }
@@ -46,14 +48,14 @@
 
     </section>
 
-    {{-- flash success/error message if there is one--}}
+    {{-- flash success/error message if there is one --}}
     <x-alert-success />
     <x-alert-error />
 
     {{-- subscribe to newsletter --}}
     <x-subscribe-footer />
     {{-- js file from flowbite --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
 </body>
 
 </html>

@@ -4,7 +4,7 @@
     <x-slot name="content">
 
         {{-- page title --}}
-        <div class="flex flex-col justify-center items-align  pt-20 pb-5 text-center bg-gray-50">
+        <div class="flex flex-col justify-center items-align  pt-20 pb-5 text-center bg-gray-50" style="background-image:url({{ asset('images/page-background.jpg')}}) ;">
             <x-page-title>
                 Admin Section
                 <x-slot name="introText">

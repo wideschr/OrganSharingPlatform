@@ -4,7 +4,7 @@
     <x-slot name="content">
 
         {{-- page title --}}
-        <div class="flex flex-col justify-center items-align  pt-20 pb-5 text-center bg-gray-50">
+        <div class="flex flex-col justify-center items-align  pt-20 pb-5 text-center bg-gray-50" style="background-image:url({{ asset('images/page-background.jpg')}}) ;">
             <x-page-title>
                 Frequently Asked Questions (FAQ)
                 <x-slot name="introText">
@@ -12,7 +12,7 @@
                     Browse around on this page and there's a big chance your question will already be answered. If not, head over to our contact page!
                 </x-slot>
             </x-page-title>
-            <div class="w-full flex justify-center bg-gray-50 pb-20">
+            <div class="w-full flex justify-center pb-20">
                 <x-button-default>
                     Go to the contact form
                     <x-slot name='href'>"/contact"</x-slot>

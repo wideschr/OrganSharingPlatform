@@ -1,7 +1,6 @@
-<footer class="bg-gray-100  rounded-xl text-center py-16 px-10 mt-16">
-    <img src="/images/logo-no-background.png" alt="" class="mx-auto mb-6" style="width: 145px;">
-    <h5 class="text-3xl">Stay in touch with the latest offers</h5>
-    <p class="text-sm mt-3">Promise to keep the inbox clean. No bugs.</p>
+<footer class="bg-gray-100  rounded-xl text-center py-16 px-10 mt-16" style="background-image:url({{ asset('images/page-background.jpg')}}) ;">
+    <h5 class="text-3xl text-white">Stay in touch with the latest offers</h5>
+    <p class="text-sm mt-3  text-white">Promise to keep the inbox clean. No bugs.</p>
 
     <div class="mt-10">
         <div class="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
@@ -32,7 +31,7 @@
         </div>
     </div>
 
-    <p class="mt-10 text-sm text-center text-gray-500 dark:text-gray-400 sm:mb-0">
+    <p class="mt-10 text-sm text-center text-gray-100 dark:text-gray-400 sm:mb-0">
         &copy; 2023 <a href="https://www.linkedin.com/in/wito-de-schrijver-a52872120/" class="hover:underline" target="_blank">Wito De Schrijver</a>. All rights reserved.
     </p>
 </footer>

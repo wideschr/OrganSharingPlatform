@@ -5,14 +5,14 @@
     <x-slot name="content">
 
         {{-- page title --}}
-        <div class="flex flex-col justify-center items-align pt-10 pb-10 pt-20 text-center bg-gray-50">
+        <div class="flex flex-col justify-center items-align pt-10 pb-10 pt-20 text-center bg-gray-50" style="background-image:url({{ asset('images/page-background.jpg')}}) ;">
             <x-page-title>
                 Reset Password
                 <x-slot name="introText">
                     Already have an account but can't remember your password? No problem! Enter your email address below and we'll send you a link to reset your password.
                 </x-slot>
             </x-page-title>
-            <div class="w-full flex justify-center bg-gray-50 pb-20">
+            <div class="w-full flex justify-center pb-20">
                 <x-button-default>
                     Create an account
                     <x-slot name='href'>"/register"</x-slot>

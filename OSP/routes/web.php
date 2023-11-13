@@ -74,12 +74,7 @@ Route::post('password/reset/{email}', [ForgotPasswordController::class,'storeRes
 
 
 //about page
-Route::get('/about', function (){
-
-    return view('about/about', [
-        //
-    ]);
-});
+Route::get('/about', function (){return view('about/about');});
 
 //profile page
 Route::get('/profile', [ProfileController::class, 'create'])->middleware('auth');

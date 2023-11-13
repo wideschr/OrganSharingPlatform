@@ -142,10 +142,23 @@
                             Contact Us</h2>
                         <!-- Add information about contacting the platform with appropriate styling -->
                         <p class="mb-6  ">
-                            Have questions or suggestions? We'd love to hear from you. Reach out to us at <a
-                                href="mailto:your@email.com" class="underline">your@email.com</a>.
+                            Have questions or suggestions? We'd love to hear from you.  <a
+                                href="/contact" class="underline">Contact us</a>.
                         </p>
                     </section>
+
+                    <section class="w-3/5 py-5">
+                        <h2
+                            class="mb-2   uppercase text-left text-lg font-normal text-blue-700 lg:text-xl  dark:text-gray-400">
+                            links</h2>
+                        <!-- Add information about contacting the platform with appropriate styling -->
+                        <p class="mb-6  ">
+                            Visit the repository on  <a
+                                href="https://github.com/wideschr/OrganSharingPlatform" target="_blank" class="underline">GitHub</a>.
+                        </p>
+                    </section>
+
+
 
                 </div>
 

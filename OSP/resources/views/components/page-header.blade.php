@@ -1,4 +1,5 @@
-<nav class="md:flex md:justify-between md:items-center my-3 w-4/5 mx-auto" >
+<nav class="md:flex md:justify-between md:items-center my-3 w-4/5 mx-auto" 
+style="background-image:url({{ asset('images/page-background.jpg')}}) ; background-position:  center; background-size: 150%; ">
     {{-- logo --}}
     <div class="">
         <a href="/">
